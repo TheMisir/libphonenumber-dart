@@ -1,0 +1,10 @@
+[package]
+name = "phonenumber"
+version = "0.1.0"
+authors = ["Misir Jafarov <misir@fonibo.com>"]
+
+[lib]
+crate-type = ["dylib"]
+
+[dependencies]
+phonenumber = "0.3.0"

@@ -1,7 +1,0 @@
-[package]
-name = "libphonenumber"
-version = "0.1.0"
-authors = ["Misir Jafarov <misir@fonibo.com>"]
-
-[lib]
-crate-type = ["cdylib"]
