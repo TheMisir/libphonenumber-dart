@@ -12,7 +12,8 @@ void main() {
   group('PhoneNumber', () {
     test('x', () {
       var numb = PhoneNumber.parse('GE', '051 61254 33');
-      var x = numb;
+      var x = numb.format(FormatMode.International);
+      var e;
     });
 
     group('.parse()', () {

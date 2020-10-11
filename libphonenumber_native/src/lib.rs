@@ -17,8 +17,8 @@ pub fn from_c_str<'a>(str: *const c_char) -> Result<&'a str, Utf8Error> {
 	unsafe { CStr::from_ptr(str) }.to_str()
 }
 
-pub fn to_c_str(str: &str) -> Result<CString, NulError> {
-	CString::new(str.as_bytes())
+pub fn to_c_str(str: &str) -> Result<*const c_char, NulError> {
+	CString::new(str.as_bytes()).and_then(|s| Ok(s.as_ptr()))
 }
 
 pub fn parse_mode(mode: u8) -> Result<Mode, ()> {
@@ -47,7 +47,7 @@ pub extern "C" fn phonenumber_format(number: *const PhoneNumber, mode: u8) -> *c
 	let number = unsafe { &*number };
 	let formatter = phonenumber::format(number);
 	let result = format!("{}", formatter.mode(parse_mode(mode).unwrap()));
-	to_c_str(&result).unwrap().as_ptr()
+	to_c_str(&result).unwrap()
 }
 
 #[no_mangle]
