@@ -1,10 +1,18 @@
 [package]
-name = "phonenumber"
+name = "phonenumber_bridge"
 version = "0.1.0"
 authors = ["Misir Jafarov <misir@fonibo.com>"]
 
 [lib]
-crate-type = ["dylib"]
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 phonenumber = "0.3.0"
+
+[dev-dependencies]
+cfg-if = "0.1.10"
+tempfile = "3"
+
+[profile.release]
+lto = true
+codegen-units = 1
